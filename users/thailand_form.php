@@ -37,34 +37,22 @@ if (($_SESSION["usersID"] == "")) {
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Thailand Trip Package</h5>
-                        <form class="row g-3">
+                        <form class="row g-3" action="" method="post">
                             <div class="col-md-12">
-                                <input type="text" class="form-control" placeholder="Your Name" required>
+                                <input type="text" name="name" id="name" class="form-control" placeholder="Your Name" required>
                             </div>
                             <div class="col-md-6">
-                                <input type="email" class="form-control" placeholder="Email" required>
+                                <input type="email" name="email" id="email" class="form-control" placeholder="Email" required>
                             </div>
                             <div class="col-md-6">
-                                <input type="number" class="form-control" placeholder="Phone" required>
+                                <input type="number" name="phone" id="phone" class="form-control" placeholder="Phone" required>
                             </div>
                             <div class="col-md-6">
-                                <input type="date" class="form-control date-input" placeholder="Date" required>
+                                <input type="date" name="date" id="date" class="form-control date-input" placeholder="Date" required>
                             </div>
                             <div class="col-md-6">
-                                <input type="number" class="form-control" placeholder="PAX" required>
+                                <input type="number" name="pax" id="pax" class="form-control" placeholder="PAX" required>
                             </div>
-                            <!-- <div class="col-12">
-                                <input type="text" class="form-control" placeholder="Address" required>
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" placeholder="City" required>
-                            </div>
-                            <div class="col-md-4">
-                                <input type="text" class="form-control" placeholder="State">
-                            </div>
-                            <div class="col-md-2">
-                                <input type="text" class="form-control" placeholder="Pincode">
-                            </div> -->
                             <br>
                             <br>
                             <h1 class="text-center text-info">THAILAND</h1>
@@ -108,7 +96,7 @@ if (($_SESSION["usersID"] == "")) {
                                         </div>
                                         <div class="form-row mx-1">
                                             <label for="rooms">Rooms:</label>
-                                            <select class="form-control" name="rooms">
+                                            <select class="form-control" name="room" id="room">
                                                 <option value="disabled" selected>Select Rooms</option>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
@@ -123,7 +111,7 @@ if (($_SESSION["usersID"] == "")) {
                                         </div>
                                         <div class="form-row mx-1">
                                             <label for="nights">Nights:</label>
-                                            <select class="form-control" name="nights">
+                                            <select class="form-control" name="night" id="night">
                                                 <option value="disabled" selected>Select Nights</option>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
@@ -138,7 +126,7 @@ if (($_SESSION["usersID"] == "")) {
                                         </div>
                                         <div class="form-row mx-1">
                                             <label for="adults">Adults:</label>
-                                            <select class="form-control" name="adults">
+                                            <select class="form-control" name="adult" id="adult">
                                                 <option value="disabled" selected>Select Adults</option>
                                                 <option value="0">0</option>
                                                 <option value="1">1</option>
@@ -147,18 +135,8 @@ if (($_SESSION["usersID"] == "")) {
                                             </select>
                                         </div>
                                         <div class="form-row mx-1">
-                                            <label for="adults">Childs(optional):</label>
-                                            <select class="form-control" name="childs">
-                                                <option value="disabled" selected>Select Childs</option>
-                                                <option value="0">0</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-row mx-1">
                                             <label for="checkinDate">Check-in Date:</label>
-                                            <input type="date" class="form-control checkin-date" name="checkinDate">
+                                            <input type="date" class="form-control checkin-date" name="checkinDate" id="checkinDate">
                                         </div>
                                     </div>
                                 </div>
@@ -198,7 +176,7 @@ if (($_SESSION["usersID"] == "")) {
                                         </div>
                                         <div class="form-row mx-1">
                                             <label for="rooms">No of Persion:</label>
-                                            <select class="form-control" name="rooms">
+                                            <select class="form-control" name="transpersion" id="transpersion">
                                                 <option value="disabled" selected>Select Persion</option>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
@@ -213,7 +191,7 @@ if (($_SESSION["usersID"] == "")) {
                                         </div>
                                         <div class="form-row mx-1">
                                             <label for="checkinDate">Check-in Date:</label>
-                                            <input type="date" class="form-control checkin-date" name="checkinDate">
+                                            <input type="date" class="form-control checkin-date" name="transCheckinDate">
                                         </div>
 
                                     </div>
@@ -254,7 +232,7 @@ if (($_SESSION["usersID"] == "")) {
                                         </div>
                                         <div class="form-row mx-1">
                                             <label for="rooms">No of Persion:</label>
-                                            <select class="form-control" name="rooms">
+                                            <select class="form-control" name="sightPersion" id="sightPersion">
                                                 <option value="disabled" selected>Select Persion</option>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
@@ -269,18 +247,41 @@ if (($_SESSION["usersID"] == "")) {
                                         </div>
                                         <div class="form-row mx-1">
                                             <label for="checkinDate">Check-in Date:</label>
-                                            <input type="date" class="form-control checkin-date" name="checkinDate">
+                                            <input type="date" class="form-control checkin-date" name="sightCheckinDate" id="sightCheckinDate">
                                         </div>
 
                                     </div>
                                 </div>
                                 <button type="button" id="addButton2" class="btn btn-primary">Add</button>
                             </div>
+                            <button type="button" class="btn btn-sm btn-block btn-primary" id="fetchDataButton">Calculate</button>
+                        </form>
+                        <form action="" method="post">
                             <!-- main div close -->
                             <table>
                                 <tr class="">
                                     <th>Remarks:</th>
-                                    <td><input type="text" name="remarks"><br></td>
+                                    <td><input type="text" name="remarks">
+                                    <input type="hidden" name="dname" id="dname"/>
+                                    <input type="hidden" name="demail" id="demail"/>
+                                    <input type="hidden" name="dphone" id="dphone"/>
+                                    <input type="hidden" name="dpax" id="dpax"/>
+                                    <input type="hidden" name="dpax" id="dcity"/>
+                                    <input type="hidden" name="dpax" id="dhotel"/>
+                                    <input type="hidden" name="dpax" id="dcategory"/>
+                                    <input type="hidden" name="dpax" id="droom"/>
+                                    <input type="hidden" name="dpax" id="dnight"/>
+                                    <input type="hidden" name="dpax" id="dadult"/>
+                                    <input type="hidden" name="dpax" id="dtranscity"/>
+                                    <input type="hidden" name="dpax" id="dtransport"/>
+                                    <input type="hidden" name="dpax" id="dtranspersion"/>
+                                    <input type="hidden" name="dpax" id="dsightcity"/>
+                                    <input type="hidden" name="dpax" id="dsightseeing"/>
+                                    <input type="hidden" name="dpax" id="dsightPersion"/>
+                                    <input type="hidden" name="dpax" id="dfirstTotalInr"/>
+                                    <input type="hidden" name="dpax" id="dtransTotal"/>
+                                    <input type="hidden" name="dpax" id="dsightTotal"/>
+                                </span></td>
                                 </tr>
                                 <tr class="p-3">
                                     <th>Total THB:
@@ -298,10 +299,11 @@ if (($_SESSION["usersID"] == "")) {
                                 </tr>
                                 <tr>
                                     <th>Total INR:</th>
-                                    <!-- <td>1522</td> -->
+                                    <td><input type="text" name="total" id="dTotal" /></td>
+                                 
                                 </tr>
                             </table>
-                            <button type="submit" class="btn btn-sm btn-block btn-primary" name="submit">Calculate</button>
+                            
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary">Submit</button>
                                 <button type="reset" class="btn btn-secondary">Reset</button>
@@ -444,4 +446,74 @@ if (($_SESSION["usersID"] == "")) {
             });
         });
     });
+</script>
+
+<script>
+    function populateFirstForm(){
+        var name = document.getElementById('name').value;
+        var email = document.getElementById('email').value;
+        var phone = document.getElementById('phone').value;
+        // var date = document.getElementById('date').value;
+        var pax = document.getElementById('pax').value;
+        // //thailand hotel details
+        var city = document.getElementById('city').value;
+        var hotel = document.getElementById('hotel').value;
+        var category = document.getElementById('category').value;
+        var room = document.getElementById('room').value;
+        var night = document.getElementById('night').value;
+        var adult = document.getElementById('adult').value;
+        // var checkindate = document.getElementById('checkindate').value;
+        // //thailand transport details
+        var transcity = document.getElementById('transcity').value;
+        var transport = document.getElementById('transport').value;
+        var transpersion = document.getElementById('transpersion').value;
+        // var transCheckinDate = document.getElementById('transCheckinDate').value;
+        // //sightseeing details
+        var sightcity = document.getElementById('sightcity').value;
+        var sightseeing = document.getElementById('sightseeing').value;
+        var sightPersion = document.getElementById('sightPersion').value;
+        // var sightCheckinDate = document.getElementById('sightCheckinDate').value;
+        var firstTotalInr = category*room*night;
+        var transTotal = transport*transpersion;
+        var sightTotal = sightseeing*sightPersion;
+        var Total = firstTotalInr+transTotal+sightTotal;
+        //calculation area
+
+
+        //fetch data in second form
+        // Fill data into the second form
+        document.getElementById('dname').value = name;
+        document.getElementById('demail').value = email;                    
+        document.getElementById('dphone').value = phone;
+        // document.getElementById('ddate').value = date;
+        document.getElementById('dpax').value = pax;
+
+        document.getElementById('dcity').value = city;
+        document.getElementById('dhotel').value = hotel;
+        document.getElementById('dcategory').value = category;
+        document.getElementById('droom').value = room;
+        document.getElementById('dnight').value = night;
+        document.getElementById('dadult').value = adult;
+        // document.getElementById('dcheckindate').value = checkindate;
+        document.getElementById('dtranscity').value = transcity;
+        document.getElementById('dtransport').value = transport;
+        document.getElementById('dtranspersion').value = transpersion;
+        // document.getElementById('dtransCheckinDate').value = transCheckinDate;
+        document.getElementById('dsightcity').value = sightcity;
+        document.getElementById('dsightseeing').value = sightseeing;
+        document.getElementById('dsightPersion').value = sightPersion;
+        // document.getElementById('dsightCheckinDate').value = sightCheckinDate;
+        document.getElementById('dfirstTotalInr').value = firstTotalInr;
+        document.getElementById('dtransTotal').value = transTotal;
+        document.getElementById('dsightTotal').value = sightTotal;
+        document.getElementById('dTotal').value = Total;
+    }
+    document.getElementById('fetchDataButton').addEventListener('click', function() {
+        populateFirstForm();
+        alert("hello"); // Call the function to populate the input fields in the first form
+    });
+            
+            
+           
+
 </script>

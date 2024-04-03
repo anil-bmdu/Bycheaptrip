@@ -6,7 +6,7 @@ if(isset($_POST['city_id'])) {
     $city_id = $_POST['city_id'];
 
     // Query to select hotels for the given city_id
-    $query = "SELECT * FROM transport WHERE tcity_id='" . $city_id . "' ORDER BY transport_name ASC";
+    $query = "SELECT trans_id, transport_name, prices FROM transport WHERE tcity_id='" . $city_id . "' ORDER BY transport_name ASC";
 
     // Execute the query
     $result = mysqli_query($conn, $query);
@@ -18,7 +18,7 @@ if(isset($_POST['city_id'])) {
             // Loop through the results and create options
             while($row = mysqli_fetch_assoc($result)){
                 ?>
-                <option value="<?php echo $row['trans_id'] ?>"><?php echo $row['transport_name'] ?></option>
+                <option value="<?php echo $row['prices'] ?>"><?php echo $row['transport_name'] . " - $" . $row['prices'] ?></option>
                 <?php 
             }
         } else {
