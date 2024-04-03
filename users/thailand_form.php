@@ -3,6 +3,7 @@ include "../connection.php";
 session_start();
 if (($_SESSION["usersID"] == "")) {
     header("Location:../index");
+ 
 }
 ?>
 <style>
@@ -283,15 +284,14 @@ if (($_SESSION["usersID"] == "")) {
                                     <input type="hidden" name="dpax" id="dsightTotal"/>
                                 </span></td>
                                 </tr>
-                                <tr class="p-3">
-                                    <th>Total THB:
-                                    <th>
-                                        <!-- <td>12334</td> -->
+                                <tr>
+                                    <th>Total THB:</th>
+                                        <td><input type="text" name="thbTotal" id="thbTotalValue" /></td>
 
                                 </tr>
                                 <tr>
                                     <th>THB TO INR Rate:</th>
-                                    <!-- <td>15</td> -->
+                                    <td><input type="text" name="thbtoinr" value="2.7" /></td>
                                 </tr>
                                 <tr>
                                     <th>Srvice per person INR Rate:</th>
@@ -320,6 +320,193 @@ if (($_SESSION["usersID"] == "")) {
 
 
 <?php include("footer.php") ?>
+
+<!-- <script>
+    // Function to calculate and store data in array format
+    function calculateData() {
+        var formDataArray = []; // Initialize an empty array to store form data
+
+        // Get values from form fields
+        var city = document.getElementById('city').value;
+        var hotel = document.getElementById('hotel').value;
+        var category = document.getElementById('category').value;
+        var room = document.getElementById('room').value;
+        var night = document.getElementById('night').value;
+        var adult = document.getElementById('adult').value;
+        // var checkinDate = document.getElementById('checkinDate').value;
+
+        // Perform calculations if needed
+        // For example, calculate total price
+        var totalPrice = room * night; // Sample calculation
+        
+        // Create an object with the extracted data
+        var formData = {
+            city: city,
+            hotel: hotel,
+            category: category,
+            room: room,
+            night: night,
+            adult: adult,
+            // checkinDate: checkinDate,
+            totalPrice: totalPrice
+        };
+        console.log(formData);
+
+        // Push the formData object to the formDataArray
+        formDataArray.push(formData);
+
+        // Output the array for demonstration (you can modify this as per your requirement)
+        console.log(formDataArray);
+    }
+
+    // Event listener for the "Add" button click
+    document.getElementById('fetchDataButton').addEventListener('click', function() {
+        calculateData(); // Call the function to calculate and store data
+    });
+</script> -->
+
+
+<script>
+    // Function to calculate and store data in array format for sightseeing form
+    function calculateSightseeingData() {
+        var sightseeingDataArray = []; // Initialize an empty array to store form data
+        var totalData = { totalPrice: 0 };
+        // Get all form rows for sightseeing
+        var formRows = document.querySelectorAll('.form-rows-container-2');
+
+        // Iterate over each form row
+        formRows.forEach(function(row) {
+            var sightCity = row.querySelector('#sightcity').value;
+            var sightseeing = row.querySelector('#sightseeing').value;
+            var sightPersion = row.querySelector('#sightPersion').value;
+            // var sightCheckinDate = row.querySelector('#sightCheckinDate').value;
+            var totalPrice = sightseeing * sightPersion;
+            // Create an object with the extracted data
+            var formData = {
+                sightCity: sightCity,
+                sightseeing: sightseeing,
+                sightPersion: sightPersion,
+                // sightCheckinDate: sightCheckinDate
+            };
+
+            // Push the formData object to the sightseeingDataArray
+            sightseeingDataArray.push(formData);
+            totalData.totalPrice += totalPrice;
+        });
+
+        // Output the array for demonstration (you can modify this as per your requirement)
+        console.log(sightseeingDataArray);
+        console.log(totalData);
+    }
+
+    // Event listener for the "Add" button click for sightseeing form
+    document.getElementById('fetchDataButton').addEventListener('click', function() {
+        calculateSightseeingData(); // Call the function to calculate and store data
+    });
+</script>
+
+
+<script>
+    // Function to calculate and store data in an array
+    function calculateData1() {
+        var formDataArray = []; // Initialize an empty array to store form data
+        var totalData = { totalPrice: 0 };
+        // Get all form rows
+        var formRows = document.querySelectorAll('.form-rows-container-1');
+
+        // Iterate over each form row
+        formRows.forEach(function(row) {
+            var city = row.querySelector('#transcity').value;
+            var transport = row.querySelector('#transport').value;
+            var persion = row.querySelector('#transpersion').value;
+            // var checkinDate = row.querySelector('.checkin-date').value;
+            var totalPrice = transport * persion;
+            // Create an object with the extracted data
+            var formData = {
+                city: city,
+                transport: transport,
+                persion: persion,
+                totalPrice: totalPrice,
+                // checkinDate: checkinDate
+            };
+
+            // Push the formData object to the formDataArray
+            formDataArray.push(formData);
+            totalData.totalPrice += totalPrice;
+        });
+
+        // Output the array for demonstration (you can modify this as per your requirement)
+        console.log(formDataArray);
+        console.log(totalData);
+        // You can perform further calculations or processing with this array
+        // For example, you can sum up the values of certain properties in the objects
+    }
+
+    // Event listener for the "Add" button click
+    document.getElementById('fetchDataButton').addEventListener('click', function() {
+        calculateData1(); // Call the function to calculate and store data
+    });
+</script>
+
+
+<script>
+    // Function to calculate and store data in array format
+    function calculateData() {
+        var formDataArray = []; // Initialize an empty array to store form data
+        var totalData = { totalPrice: 0 }; // Initialize total data object
+        
+        // Get all form rows
+        var formRows = document.querySelectorAll('.form-rows-container');
+
+        // Iterate over each form row
+        formRows.forEach(function(row) {
+            var city = row.querySelector('#city').value;
+            var hotel = row.querySelector('#hotel').value;
+            var category = row.querySelector('#category').value;
+            var room = row.querySelector('#room').value;
+            var night = row.querySelector('#night').value;
+            var adult = row.querySelector('#adult').value;
+            // var checkinDate = row.querySelector('.checkin-date').value;
+
+            // Perform calculations if needed
+            // For example, calculate total price
+            var totalPrice = category * room * night; // Sample calculation
+            
+            // Create an object with the extracted data
+            var formData = {
+                city: city,
+                hotel: hotel,
+                category: category,
+                room: room,
+                night: night,
+                adult: adult,
+                // checkinDate: checkinDate,
+                totalPrice: totalPrice
+            };
+
+            // Push the formData object to the formDataArray
+            formDataArray.push(formData);
+
+            // Accumulate total price
+            totalData.totalPrice += totalPrice;
+        });
+
+        // Output the array for demonstration (you can modify this as per your requirement)
+        console.log(formDataArray);
+        console.log(totalData); // Log total data
+
+        // Return total data if needed
+        return totalData;
+    }
+
+    // Event listener for the "Add" button click
+    document.getElementById('fetchDataButton').addEventListener('click', function() {
+        calculateData(); // Call the function to calculate and store data
+    });
+</script>
+
+
+
 <script>
     $(document).ready(function() {
         $("#addButton").click(function() {
@@ -364,6 +551,8 @@ if (($_SESSION["usersID"] == "")) {
         });
     });
 </script>
+
+
 <script>
     //date
     $(document).ready(function() {
@@ -474,11 +663,17 @@ if (($_SESSION["usersID"] == "")) {
         var sightPersion = document.getElementById('sightPersion').value;
         // var sightCheckinDate = document.getElementById('sightCheckinDate').value;
         var firstTotalInr = category*room*night;
+       
         var transTotal = transport*transpersion;
+       
         var sightTotal = sightseeing*sightPersion;
-        var Total = firstTotalInr+transTotal+sightTotal;
-        //calculation area
 
+      
+        var Total = firstTotalInr+transTotal+sightTotal;
+        var thbTotal = Number(Total)/2.7;
+        var thbTotalFormatted = thbTotal.toFixed(2);
+        alert(thbTotalFormatted);
+        const thbToInr = 2.7;
 
         //fetch data in second form
         // Fill data into the second form
@@ -507,6 +702,9 @@ if (($_SESSION["usersID"] == "")) {
         document.getElementById('dtransTotal').value = transTotal;
         document.getElementById('dsightTotal').value = sightTotal;
         document.getElementById('dTotal').value = Total;
+        document.getElementById('thbtoinr').value = thbToInr;
+        // alert(thbTotalFormatted);
+        document.getElementById('thbTotalValue').value = thbTotalFormatted;
     }
     document.getElementById('fetchDataButton').addEventListener('click', function() {
         populateFirstForm();
