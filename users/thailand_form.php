@@ -98,7 +98,7 @@ if (($_SESSION["usersID"] == "")) {
                                         <div class="form-row mx-1">
                                             <label for="rooms">Rooms:</label>
                                             <select class="form-control" name="room" id="room">
-                                                <option value="disabled" selected>Select Rooms</option>
+                                                <option value="" selected>Select Rooms</option>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
                                                 <option value="3">3</option>
@@ -113,7 +113,7 @@ if (($_SESSION["usersID"] == "")) {
                                         <div class="form-row mx-1">
                                             <label for="nights">Nights:</label>
                                             <select class="form-control" name="night" id="night">
-                                                <option value="disabled" selected>Select Nights</option>
+                                                <option value="" selected>Select Nights</option>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
                                                 <option value="3">3</option>
@@ -128,7 +128,7 @@ if (($_SESSION["usersID"] == "")) {
                                         <div class="form-row mx-1">
                                             <label for="adults">Adults:</label>
                                             <select class="form-control" name="adult" id="adult">
-                                                <option value="disabled" selected>Select Adults</option>
+                                                <option value="" selected>Select Adults</option>
                                                 <option value="0">0</option>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
@@ -172,22 +172,13 @@ if (($_SESSION["usersID"] == "")) {
                                         <div class="form-row mx-1">
                                             <label for="hotel">Transport:</label>
                                             <select class="form-control" name="transport" id="transport">
-                                                <option value="disabled" selected>Select Transport</option>
+                                                <option value="" selected>Select Transport</option>
                                             </select>
                                         </div>
                                         <div class="form-row mx-1">
                                             <label for="rooms">No of Persion:</label>
-                                            <select class="form-control" name="transpersion" id="transpersion">
-                                                <option value="disabled" selected>Select Persion</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                                <option value="6">6</option>
-                                                <option value="7">7</option>
-                                                <option value="8">8</option>
-                                                <option value="9">9</option>
+                                            <select class="form-control" name="transCategory" id="transCategory">
+                                                <option value="" selected>Select Persion</option>
                                             </select>
                                         </div>
                                         <div class="form-row mx-1">
@@ -228,13 +219,13 @@ if (($_SESSION["usersID"] == "")) {
                                         <div class="form-row mx-1">
                                             <label for="hotel">Sightseeing:</label>
                                             <select class="form-control" name="sightseeing" id="sightseeing">
-                                                <option value="disabled" selected>Select Sightseeing</option>
+                                                <option value="" selected>Select Sightseeing</option>
                                             </select>
                                         </div>
                                         <div class="form-row mx-1">
                                             <label for="rooms">No of Persion:</label>
                                             <select class="form-control" name="sightPersion" id="sightPersion">
-                                                <option value="disabled" selected>Select Persion</option>
+                                                <option value="" selected>Select Persion</option>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
                                                 <option value="3">3</option>
@@ -263,13 +254,13 @@ if (($_SESSION["usersID"] == "")) {
                                 <tr class="">
                                     <th>Remarks:</th>
                                     <td><input type="text" name="remarks">
-                                    <input type="hidden" name="dname" id="dname"/>
-                                    <input type="hidden" name="demail" id="demail"/>
-                                    <input type="hidden" name="dphone" id="dphone"/>
-                                    <input type="hidden" name="dpax" id="dpax"/>
-                                    <input type="hidden" name="dpax" id="dcity"/>
-                                    <input type="hidden" name="dpax" id="dhotel"/>
-                                    <input type="hidden" name="dpax" id="dcategory"/>
+                                    <input type="text" name="dname" id="dname"/>
+                                    <input type="text" name="demail" id="demail"/>
+                                    <input type="text" name="dphone" id="dphone"/>
+                                    <input type="text" name="dpax" id="dpax"/>
+                                    <input type="text" name="totalSum" id="totalSumDisplay1"/>
+                                    <input type="text" name="account_id" id="dhotel" value="<?php echo $_SESSION['userEmail']; ?>"/>
+                                    <!-- <input type="hidden" name="dpax" id="dcategory"/>
                                     <input type="hidden" name="dpax" id="droom"/>
                                     <input type="hidden" name="dpax" id="dnight"/>
                                     <input type="hidden" name="dpax" id="dadult"/>
@@ -281,12 +272,12 @@ if (($_SESSION["usersID"] == "")) {
                                     <input type="hidden" name="dpax" id="dsightPersion"/>
                                     <input type="hidden" name="dpax" id="dfirstTotalInr"/>
                                     <input type="hidden" name="dpax" id="dtransTotal"/>
-                                    <input type="hidden" name="dpax" id="dsightTotal"/>
+                                    <input type="hidden" name="dpax" id="dsightTotal"/> -->
                                 </span></td>
                                 </tr>
                                 <tr>
                                     <th>Total THB:</th>
-                                        <td><input type="text" name="thbTotal" id="thbTotalValue" /></td>
+                                        <td><input type="text" name="thbTotal" id="totalthb" /></td>
 
                                 </tr>
                                 <tr>
@@ -295,11 +286,11 @@ if (($_SESSION["usersID"] == "")) {
                                 </tr>
                                 <tr>
                                     <th>Srvice per person INR Rate:</th>
-                                    <!-- <td>1522</td> -->
+                                    <td><input type="text" name="inrperpersion" id="inrperpersion" /></td>
                                 </tr>
                                 <tr>
                                     <th>Total INR:</th>
-                                    <td><input type="text" name="total" id="dTotal" /></td>
+                                    <td><input type="text" name="total" id="totalSumDisplay" /></td>
                                  
                                 </tr>
                             </table>
@@ -321,52 +312,12 @@ if (($_SESSION["usersID"] == "")) {
 
 <?php include("footer.php") ?>
 
-<!-- <script>
-    // Function to calculate and store data in array format
-    function calculateData() {
-        var formDataArray = []; // Initialize an empty array to store form data
 
-        // Get values from form fields
-        var city = document.getElementById('city').value;
-        var hotel = document.getElementById('hotel').value;
-        var category = document.getElementById('category').value;
-        var room = document.getElementById('room').value;
-        var night = document.getElementById('night').value;
-        var adult = document.getElementById('adult').value;
-        // var checkinDate = document.getElementById('checkinDate').value;
-
-        // Perform calculations if needed
-        // For example, calculate total price
-        var totalPrice = room * night; // Sample calculation
-        
-        // Create an object with the extracted data
-        var formData = {
-            city: city,
-            hotel: hotel,
-            category: category,
-            room: room,
-            night: night,
-            adult: adult,
-            // checkinDate: checkinDate,
-            totalPrice: totalPrice
-        };
-        console.log(formData);
-
-        // Push the formData object to the formDataArray
-        formDataArray.push(formData);
-
-        // Output the array for demonstration (you can modify this as per your requirement)
-        console.log(formDataArray);
-    }
-
-    // Event listener for the "Add" button click
-    document.getElementById('fetchDataButton').addEventListener('click', function() {
-        calculateData(); // Call the function to calculate and store data
-    });
-</script> -->
 
 
 <script>
+    var totalSum = 0;
+    var allTotalSum = 0;
     // Function to calculate and store data in array format for sightseeing form
     function calculateSightseeingData() {
         var sightseeingDataArray = []; // Initialize an empty array to store form data
@@ -394,33 +345,32 @@ if (($_SESSION["usersID"] == "")) {
             totalData.totalPrice += totalPrice;
         });
 
+        totalSum += totalData.totalPrice;
         // Output the array for demonstration (you can modify this as per your requirement)
         console.log(sightseeingDataArray);
         console.log(totalData);
     }
 
-    // Event listener for the "Add" button click for sightseeing form
-    document.getElementById('fetchDataButton').addEventListener('click', function() {
-        calculateSightseeingData(); // Call the function to calculate and store data
-    });
-</script>
 
-
-<script>
-    // Function to calculate and store data in an array
+    // Function to calculate data
     function calculateData1() {
-        var formDataArray = []; // Initialize an empty array to store form data
-        var totalData = { totalPrice: 0 };
-        // Get all form rows
-        var formRows = document.querySelectorAll('.form-rows-container-1');
+    // Clear the formDataArray before populating it again
+    formDataArray1 = [];
+    var totalData = { totalPrice: 0 };
 
-        // Iterate over each form row
+    // Get all form rows
+    var formRows = document.querySelectorAll('.form-rows-container-1');
+
+    // Iterate over each form row
         formRows.forEach(function(row) {
             var city = row.querySelector('#transcity').value;
             var transport = row.querySelector('#transport').value;
-            var persion = row.querySelector('#transpersion').value;
+            alert(transport);
+            var persion = row.querySelector('#transCategory').value;
+            alert(persion);
+            const temp = 1;
             // var checkinDate = row.querySelector('.checkin-date').value;
-            var totalPrice = transport * persion;
+            var totalPrice = temp * persion;
             // Create an object with the extracted data
             var formData = {
                 city: city,
@@ -430,27 +380,20 @@ if (($_SESSION["usersID"] == "")) {
                 // checkinDate: checkinDate
             };
 
-            // Push the formData object to the formDataArray
-            formDataArray.push(formData);
-            totalData.totalPrice += totalPrice;
+        // Push the formData object to the formDataArray
+        formDataArray1.push(formData);
+        totalData.totalPrice += totalPrice;
         });
-
+        totalSum += totalData.totalPrice;
         // Output the array for demonstration (you can modify this as per your requirement)
-        console.log(formDataArray);
-        console.log(totalData);
-        // You can perform further calculations or processing with this array
-        // For example, you can sum up the values of certain properties in the objects
+        console.log("All data:", formDataArray1);
+        console.log("Total data:", totalData);
     }
 
-    // Event listener for the "Add" button click
-    document.getElementById('fetchDataButton').addEventListener('click', function() {
-        calculateData1(); // Call the function to calculate and store data
-    });
-</script>
 
-
-<script>
     // Function to calculate and store data in array format
+    // var formDataArray=[];
+    // var formDataArray = [];
     function calculateData() {
         var formDataArray = []; // Initialize an empty array to store form data
         var totalData = { totalPrice: 0 }; // Initialize total data object
@@ -466,9 +409,6 @@ if (($_SESSION["usersID"] == "")) {
             var room = row.querySelector('#room').value;
             var night = row.querySelector('#night').value;
             var adult = row.querySelector('#adult').value;
-            // var checkinDate = row.querySelector('.checkin-date').value;
-
-            // Perform calculations if needed
             // For example, calculate total price
             var totalPrice = category * room * night; // Sample calculation
             
@@ -492,18 +432,63 @@ if (($_SESSION["usersID"] == "")) {
         });
 
         // Output the array for demonstration (you can modify this as per your requirement)
-        console.log(formDataArray);
-        console.log(totalData); // Log total data
+        console.log("All:",formDataArray);
+        console.log("Total:",totalData); // Log total data
 
         // Return total data if needed
-        return totalData;
+        totalSum += totalData.totalPrice;
+        return formDataArray;
+    }
+
+    // Function to send data to PHP script
+    function sendDataToPHP(formDataArray) {
+        var xhr = new XMLHttpRequest();
+        var url = "store_data.php";
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log(xhr.responseText); // Log the response from PHP
+            }
+        };
+        var data = JSON.stringify({formDataArray: formDataArray}); // Wrap formDataArray in an object
+        xhr.send(data);
     }
 
     // Event listener for the "Add" button click
     document.getElementById('fetchDataButton').addEventListener('click', function() {
+
+        this.style.display = 'none';
+        var name = document.getElementById('name').value;
+        var email = document.getElementById('email').value;
+        var phone = document.getElementById('phone').value;
+        // var date = document.getElementById('date').value;
+        var pax = document.getElementById('pax').value;
+
+        document.getElementById('dname').value = name;
+        document.getElementById('demail').value = email;                    
+        document.getElementById('dphone').value = phone;
+        // document.getElementById('ddate').value = date;
+        document.getElementById('dpax').value = pax;
         calculateData(); // Call the function to calculate and store data
+        // console.log(formDataArray);
+        calculateData1();
+        calculateSightseeingData();
+        // allTotalSum += totalSum;
+        var thb = totalSum/2.7;
+        var thbTotalFormatted = thb.toFixed(2);
+        var inrPer = Number(totalSum)/Number(pax);
+        document.getElementById('totalSumDisplay').value = totalSum;
+        document.getElementById('totalSumDisplay1').value = totalSum;
+        document.getElementById('totalthb').value = thbTotalFormatted;
+        document.getElementById('inrperpersion').value = inrPer;
+        console.log(formDataArray);
+        sendDataToPHP(formDataArray);
     });
 </script>
+
+
+
 
 
 
@@ -618,6 +603,23 @@ if (($_SESSION["usersID"] == "")) {
             });
         });
 
+        $("#transport").change(function(){
+            var trans_id = this.value;
+            // alert(trans_id);
+            $.ajax({
+                url: "transcategory.php",
+                type:"POST",
+                data:{
+                    trans_id:trans_id
+                },
+                cache: false,
+                success:function(result){
+                    $("#transCategory").html(result);
+                    // $("#city").html(<option value="">Select State</option>)
+                }
+            });
+        });
+
         $("#sightcity").change(function(){
             var city_id = this.value;
             // alert(city_id);
@@ -634,10 +636,11 @@ if (($_SESSION["usersID"] == "")) {
                 }
             });
         });
+        
     });
 </script>
 
-<script>
+<!-- <script>
     function populateFirstForm(){
         var name = document.getElementById('name').value;
         var email = document.getElementById('email').value;
@@ -714,4 +717,4 @@ if (($_SESSION["usersID"] == "")) {
             
            
 
-</script>
+</script> -->
