@@ -241,44 +241,30 @@ if (($_SESSION["usersID"] == "")) {
                                             <label for="checkinDate">Check-in Date:</label>
                                             <input type="date" class="form-control checkin-date" name="sightCheckinDate" id="sightCheckinDate">
                                         </div>
-
                                     </div>
                                 </div>
                                 <button type="button" id="addButton2" class="btn btn-primary">Add</button>
                             </div>
                             <button type="button" class="btn btn-sm btn-block btn-primary" id="fetchDataButton">Calculate</button>
                         </form>
-                        <form action="" method="post">
+                        <form action="insert_data.php" method="post">
                             <!-- main div close -->
                             <table>
                                 <tr class="">
                                     <th>Remarks:</th>
-                                    <td><input type="text" name="remarks">
-                                    <input type="text" name="dname" id="dname"/>
-                                    <input type="text" name="demail" id="demail"/>
-                                    <input type="text" name="dphone" id="dphone"/>
-                                    <input type="text" name="dpax" id="dpax"/>
-                                    <input type="text" name="totalSum" id="totalSumDisplay1"/>
-                                    <input type="text" name="account_id" id="dhotel" value="<?php echo $_SESSION['userEmail']; ?>"/>
-                                    <!-- <input type="hidden" name="dpax" id="dcategory"/>
-                                    <input type="hidden" name="dpax" id="droom"/>
-                                    <input type="hidden" name="dpax" id="dnight"/>
-                                    <input type="hidden" name="dpax" id="dadult"/>
-                                    <input type="hidden" name="dpax" id="dtranscity"/>
-                                    <input type="hidden" name="dpax" id="dtransport"/>
-                                    <input type="hidden" name="dpax" id="dtranspersion"/>
-                                    <input type="hidden" name="dpax" id="dsightcity"/>
-                                    <input type="hidden" name="dpax" id="dsightseeing"/>
-                                    <input type="hidden" name="dpax" id="dsightPersion"/>
-                                    <input type="hidden" name="dpax" id="dfirstTotalInr"/>
-                                    <input type="hidden" name="dpax" id="dtransTotal"/>
-                                    <input type="hidden" name="dpax" id="dsightTotal"/> -->
+                                    <!-- <td><input type="text" name="remarks"> -->
+                                    <input type="hidden" name="customer_name" id="dname"/>
+                                    <input type="hidden" name="email" id="demail"/>
+                                    <input type="hidden" name="phone" id="dphone"/>
+                                    <input type="hidden" name="pax" id="dpax"/>
+                                    <input type="hidden" name="package_inr" id="totalSumDisplay"/>
+                                    <input type="hidden" name="account_id" value="<?php echo $_SESSION['userEmail']; ?>"/>
+                                   
                                 </span></td>
                                 </tr>
                                 <tr>
                                     <th>Total THB:</th>
-                                        <td><input type="text" name="thbTotal" id="totalthb" /></td>
-
+                                        <td><div id="totalthb"></div></td>
                                 </tr>
                                 <tr>
                                     <th>THB TO INR Rate:</th>
@@ -319,8 +305,9 @@ if (($_SESSION["usersID"] == "")) {
     var totalSum = 0;
     var allTotalSum = 0;
     // Function to calculate and store data in array format for sightseeing form
+    let sightseeingDataArray = [];
     function calculateSightseeingData() {
-        var sightseeingDataArray = []; // Initialize an empty array to store form data
+        // var sightseeingDataArray = []; // Initialize an empty array to store form data
         var totalData = { totalPrice: 0 };
         // Get all form rows for sightseeing
         var formRows = document.querySelectorAll('.form-rows-container-2');
@@ -353,9 +340,10 @@ if (($_SESSION["usersID"] == "")) {
 
 
     // Function to calculate data
+    let formDataArray1 = [];
     function calculateData1() {
     // Clear the formDataArray before populating it again
-    formDataArray1 = [];
+    // formDataArray1 = [];
     var totalData = { totalPrice: 0 };
 
     // Get all form rows
@@ -393,9 +381,9 @@ if (($_SESSION["usersID"] == "")) {
 
     // Function to calculate and store data in array format
     // var formDataArray=[];
-    // var formDataArray = [];
+    let formDataArray = [];
     function calculateData() {
-        var formDataArray = []; // Initialize an empty array to store form data
+        // var formDataArray = []; // Initialize an empty array to store form data
         var totalData = { totalPrice: 0 }; // Initialize total data object
         
         // Get all form rows
@@ -454,6 +442,7 @@ if (($_SESSION["usersID"] == "")) {
         var data = JSON.stringify({formDataArray: formDataArray}); // Wrap formDataArray in an object
         xhr.send(data);
     }
+    
 
     // Event listener for the "Add" button click
     document.getElementById('fetchDataButton').addEventListener('click', function() {
@@ -472,18 +461,24 @@ if (($_SESSION["usersID"] == "")) {
         document.getElementById('dpax').value = pax;
         calculateData(); // Call the function to calculate and store data
         // console.log(formDataArray);
-        calculateData1();
-        calculateSightseeingData();
+        console.log("formDataArray",formDataArray);
+        sendDataToPHP(formDataArray);
+       
+        calculateData1(formDataArray1);
+        console.log("formDataArray1",formDataArray1);
+        calculateSightseeingData(sightseeingDataArray);
+        console.log("formDataArray2",sightseeingDataArray);
+        
         // allTotalSum += totalSum;
         var thb = totalSum/2.7;
         var thbTotalFormatted = thb.toFixed(2);
         var inrPer = Number(totalSum)/Number(pax);
         document.getElementById('totalSumDisplay').value = totalSum;
         document.getElementById('totalSumDisplay1').value = totalSum;
-        document.getElementById('totalthb').value = thbTotalFormatted;
+        document.getElementById('totalthb').innerHtml = thbTotalFormatted;
         document.getElementById('inrperpersion').value = inrPer;
-        console.log(formDataArray);
-        sendDataToPHP(formDataArray);
+        
+      
     });
 </script>
 

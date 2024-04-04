@@ -8,21 +8,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $data = json_decode(file_get_contents("php://input"), true);
 
     // Check if data is not empty
-    if (!empty($data)) {
+    if (!empty($data['formDataArray'])) {
         // Loop through the received data array and insert each record into the database
-        foreach ($data as $row) {
+        foreach ($data['formDataArray'] as $row) {
             // Extract data from each row
             $city = $row['city'];
             $hotel = $row['hotel'];
             $category = $row['category'];
             $room = $row['room'];
             $night = $row['night'];
-            $adult = $row['adult'];
-            $totalPrice = $row['totalPrice'];
+            // $adult = isset($row['adult']) ? $row['adult'] : ''; // Handle the case where 'adult' key might be missing
+            // $totalPrice = $row['totalPrice'];
 
             // Perform SQL query to insert data into the database
-            $sql = "INSERT INTO thailand_hotel (hotelcity_name, hotels, category_name, rooms, nights, ex_adult, prices) 
-                    VALUES ('$city', '$hotel', '$category', '$room', '$night', '$adult', '$totalPrice')";
+            $sql = "INSERT INTO thailand_hotel (hotelcity_name, hotels, category_name, rooms, nights, ex_adults, prices) 
+                    VALUES ('$city', '$hotel', '$category', '$room', '$night', '', '')";
 
             // Execute the query
             if (mysqli_query($conn, $sql)) {
