@@ -18,7 +18,7 @@ if(isset($_POST['city_id'])) {
             // Loop through the results and create options
             while($row = mysqli_fetch_assoc($result)){
                 ?>
-                <option value="<?php echo $row['hotel_id'] ?>"><?php echo $row['hotel_name'] ?></option>
+                <option value="<?php echo $row['hotel_id'] ?>" data-custom-attribute1="<?php echo $row['hotel_name'] ?>"><?php echo $row['hotel_name'] ?></option>
                 <?php 
             }
         } else {

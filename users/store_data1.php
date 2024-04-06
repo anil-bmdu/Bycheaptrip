@@ -8,26 +8,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $data = json_decode(file_get_contents("php://input"), true);
 
     // Check if data is not empty
-    if (!empty($data['formDataArray'])) {
+    if (!empty($data['formDataArray1'])) {
         // Loop through the received data array and insert each record into the database
-        foreach ($data['formDataArray'] as $row) {
+        foreach ($data['formDataArray1'] as $row) {
             // Extract data from each row
             $city = $row['city'];
-            $hotel = $row['hotel'];
-            $category = $row['category'];
-            $room = $row['room'];
-            $night = $row['night'];
-            $custid = $row['rand'];
-            $totalPrice = $row['totalPrice'];
+            $transport = $row['transport'];
+            $persion = $row['persion'];
+            $transCheckinDate = $row['transCheckinDate'];
+            $rand1 = $row['rand1'];
 
             // Check if any of the required fields are null, if so, skip this iteration
-            if ($city === null || $hotel === null || $category === null || $room === null || $night === null || $custid === null || $totalPrice === null) {
+            if ($city === null || $transport === null || $persion === null || $transCheckinDate === null || $rand1 === null) {
                 continue; // Skip this iteration and move to the next
             }
 
             // Perform SQL query to insert data into the database
-            $sql = "INSERT INTO thailand_hotel (hotelcity_name, hotels, category_name, rooms, nights, ex_adults, prices, refer_id) 
-                    VALUES ('$city', '$hotel', '$category', '$room', '$night', '', '$totalPrice','$custid')";
+            $sql = "INSERT INTO thailand_transport (transport_city, transport, prices, transport_date, refer_id) 
+                    VALUES ('$city', '$transport', '$persion','$transCheckinDate','$rand1')";
 
             // Execute the query
             if (mysqli_query($conn, $sql)) {

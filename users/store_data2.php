@@ -8,26 +8,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $data = json_decode(file_get_contents("php://input"), true);
 
     // Check if data is not empty
-    if (!empty($data['formDataArray'])) {
+    if (!empty($data['sightseeingDataArray'])) {
         // Loop through the received data array and insert each record into the database
-        foreach ($data['formDataArray'] as $row) {
+        foreach ($data['sightseeingDataArray'] as $row) {
             // Extract data from each row
-            $city = $row['city'];
-            $hotel = $row['hotel'];
-            $category = $row['category'];
-            $room = $row['room'];
-            $night = $row['night'];
-            $custid = $row['rand'];
+            $sightcity = $row['sightCity'];
+            $sightseeing = $row['sightseeing'];
+            $sightpersion = $row['sightPersion'];
             $totalPrice = $row['totalPrice'];
+            $sightCheckinDate = $row['sightCheckinDate'];
+            $rands = $row['rands'];
 
             // Check if any of the required fields are null, if so, skip this iteration
-            if ($city === null || $hotel === null || $category === null || $room === null || $night === null || $custid === null || $totalPrice === null) {
+            if ($sightcity === null || $sightseeing === null || $sightpersion === null || $totalPrice === null || $sightCheckinDate === null || $rands === null) {
                 continue; // Skip this iteration and move to the next
             }
 
             // Perform SQL query to insert data into the database
-            $sql = "INSERT INTO thailand_hotel (hotelcity_name, hotels, category_name, rooms, nights, ex_adults, prices, refer_id) 
-                    VALUES ('$city', '$hotel', '$category', '$room', '$night', '', '$totalPrice','$custid')";
+            $sql = "INSERT INTO thailand_sightseeing (sight_city, sightseeing, sight_persion, prices, sight_date, refer_id) 
+                    VALUES ('$sightcity', '$sightseeing', '$sightpersion','$totalPrice','$sightCheckinDate','$rands')";
 
             // Execute the query
             if (mysqli_query($conn, $sql)) {

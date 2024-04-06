@@ -20,10 +20,11 @@ if (($_SESSION["usersID"] == "")) {
 
 <?php include('header.php'); ?>
 <?php include('sidebar.php'); ?>
+
 <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>Thailand Package Form</h1>
+        <h1>Thailand Package Form </h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -37,22 +38,27 @@ if (($_SESSION["usersID"] == "")) {
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Thailand Trip Package</h5>
+                        <h5 class="card-title">Thailand Trip Package</span></h5>
                         <form class="row g-3" action="" method="post">
                             <div class="col-md-12">
                                 <input type="text" name="name" id="name" class="form-control" placeholder="Your Name" required>
+                                <span id="nameError" style="color: red;"></span>
                             </div>
                             <div class="col-md-6">
                                 <input type="email" name="email" id="email" class="form-control" placeholder="Email" required>
+                                <span id="emailError" style="color: red;"></span>
                             </div>
                             <div class="col-md-6">
                                 <input type="number" name="phone" id="phone" class="form-control" placeholder="Phone" required>
+                                <span id="phoneError" style="color: red;"></span>
                             </div>
                             <div class="col-md-6">
-                                <input type="date" name="date" id="date" class="form-control date-input" placeholder="Date" required>
+                                <input type="date" name="custdate" id="custdate" class="form-control date-input" placeholder="Date" required>
+                                <span id="dateError" style="color: red;"></span>
                             </div>
                             <div class="col-md-6">
                                 <input type="number" name="pax" id="pax" class="form-control" placeholder="PAX" required>
+                                <span id="personsError" style="color: red;"></span>
                             </div>
                             <br>
                             <br>
@@ -73,7 +79,7 @@ if (($_SESSION["usersID"] == "")) {
                                                 if ($result && mysqli_num_rows($result) > 0) {
                                                     while ($row = mysqli_fetch_assoc($result)) {
                                                 ?>
-                                                        <option value="<?php echo $row['city_id']; ?>"><?php echo $row['city_name']; ?></option>
+                                                        <option value="<?php echo $row['city_id']; ?>" data-custom-attribute="<?php echo $row['city_name']; ?>"><?php echo $row['city_name']; ?></option>
                                                 <?php
                                                     }
                                                 } else {
@@ -137,7 +143,7 @@ if (($_SESSION["usersID"] == "")) {
                                         </div>
                                         <div class="form-row mx-1">
                                             <label for="checkinDate">Check-in Date:</label>
-                                            <input type="date" class="form-control checkin-date" name="checkinDate" id="checkinDate">
+                                            <input type="date" class="form-control checkin-date" name="hotelCheckinDate" id="hotelCheckinDate">
                                         </div>
                                     </div>
                                 </div>
@@ -159,7 +165,7 @@ if (($_SESSION["usersID"] == "")) {
                                                 if ($result && mysqli_num_rows($result) > 0) {
                                                     while ($row = mysqli_fetch_assoc($result)) {
                                                 ?>
-                                                        <option value="<?php echo $row['city_id']; ?>"><?php echo $row['city_name']; ?></option>
+                                                        <option value="<?php echo $row['city_id']; ?>" data-custom-category1="<?php echo $row['city_name']; ?>"><?php echo $row['city_name']; ?></option>
                                                 <?php
                                                     }
                                                 } else {
@@ -183,7 +189,7 @@ if (($_SESSION["usersID"] == "")) {
                                         </div>
                                         <div class="form-row mx-1">
                                             <label for="checkinDate">Check-in Date:</label>
-                                            <input type="date" class="form-control checkin-date" name="transCheckinDate">
+                                            <input type="date" class="form-control checkin-date" name="transCheckinDate" id="transCheckinDate">
                                         </div>
 
                                     </div>
@@ -206,7 +212,7 @@ if (($_SESSION["usersID"] == "")) {
                                                 if ($result && mysqli_num_rows($result) > 0) {
                                                     while ($row = mysqli_fetch_assoc($result)) {
                                                 ?>
-                                                        <option value="<?php echo $row['city_id']; ?>"><?php echo $row['city_name']; ?></option>
+                                                        <option value="<?php echo $row['city_id']; ?>" custom-data-item="<?php echo $row['city_name']; ?>"><?php echo $row['city_name']; ?></option>
                                                 <?php
                                                     }
                                                 } else {
@@ -257,14 +263,18 @@ if (($_SESSION["usersID"] == "")) {
                                     <input type="hidden" name="email" id="demail"/>
                                     <input type="hidden" name="phone" id="dphone"/>
                                     <input type="hidden" name="pax" id="dpax"/>
-                                    <input type="hidden" name="package_inr" id="totalSumDisplay"/>
+                                    <input type="hidden" name="custdate" id="custdate1" />
+                                    <input type="hidden" name="randomNumber11" id="drand" placeholder="randomnumber"/>
+                                    <input type="hidden" name="package_inr1" id="totalSumDisplay"/>
+                                    
+                                    <input type="hidden" name="inrperpersion" id="inrperpersion1" />
                                     <input type="hidden" name="account_id" value="<?php echo $_SESSION['userEmail']; ?>"/>
                                    
                                 </span></td>
                                 </tr>
                                 <tr>
                                     <th>Total THB:</th>
-                                        <td><div id="totalthb"></div></td>
+                                        <td><input type="text" name="package_inr" id="totalthb"/></div></td>
                                 </tr>
                                 <tr>
                                     <th>THB TO INR Rate:</th>
@@ -276,7 +286,7 @@ if (($_SESSION["usersID"] == "")) {
                                 </tr>
                                 <tr>
                                     <th>Total INR:</th>
-                                    <td><input type="text" name="total" id="totalSumDisplay" /></td>
+                                    <td><input type="text" name="total" id="totalSumDisplay1" /></td>
                                  
                                 </tr>
                             </table>
@@ -302,29 +312,109 @@ if (($_SESSION["usersID"] == "")) {
 
 
 <script>
-    var totalSum = 0;
-    var allTotalSum = 0;
+    function validateForm() {
+            var name = document.getElementById("name").value.trim();
+            var email = document.getElementById("email").value.trim();
+            var phone = document.getElementById("phone").value.trim();
+            var date = document.getElementById("custdate").value.trim();
+            var numPersons = document.getElementById("pax").value.trim();
+
+            // Reset error messages
+            document.getElementById("nameError").textContent = "";
+            document.getElementById("emailError").textContent = "";
+            document.getElementById("phoneError").textContent = "";
+            document.getElementById("dateError").textContent = "";
+            document.getElementById("personsError").textContent = "";
+
+            // Check name
+            if (name === "") {
+                document.getElementById("nameError").textContent = "Please enter a name.";
+                return false;
+            }
+
+            // Check email
+            if (email === "") {
+                document.getElementById("emailError").textContent = "Please enter an email address.";
+                return false;
+            }
+
+            var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                document.getElementById("emailError").textContent = "Please enter a valid email address.";
+                return false;
+            }
+
+            // Check phone
+            if (phone === "") {
+                document.getElementById("phoneError").textContent = "Please enter a phone number.";
+                return false;
+            }
+
+            var phonePattern = /^\d{10}$/;
+            if (!phonePattern.test(phone)) {
+                document.getElementById("phoneError").textContent = "Please enter a valid 10-digit phone number.";
+                return false;
+            }
+
+            // Check date
+            if (date === "") {
+                document.getElementById("dateError").textContent = "Please select a booking date.";
+                return false;
+            }
+
+            // Check number of persons
+            if (numPersons === "") {
+                document.getElementById("personsError").textContent = "Please enter the number of persons.";
+                return false;
+            }
+
+            var numPattern = /^\d+$/;
+            if (!numPattern.test(numPersons)) {
+                document.getElementById("personsError").textContent = "Please enter a valid number.";
+                return false;
+            }
+
+            // Form passed all validation checks
+            return true;
+        }
+
+    let totalSum = 0;
+    let allTotalSum = 0;
     // Function to calculate and store data in array format for sightseeing form
     let sightseeingDataArray = [];
-    function calculateSightseeingData() {
-        // var sightseeingDataArray = []; // Initialize an empty array to store form data
+    function calculateSightseeingData(randomNumber) {
+       
+        // let sightseeingDataArray = []; // Initialize an empty array to store form data
         var totalData = { totalPrice: 0 };
         // Get all form rows for sightseeing
         var formRows = document.querySelectorAll('.form-rows-container-2');
 
         // Iterate over each form row
         formRows.forEach(function(row) {
-            var sightCity = row.querySelector('#sightcity').value;
-            var sightseeing = row.querySelector('#sightseeing').value;
+
+            var selectElement5 = document.getElementById("sightcity");
+            var selectedOption5 = selectElement5.options[selectElement5.selectedIndex];
+            var sightCity = selectedOption5.getAttribute("custom-data-item");
+            console.log("customAttributeValuesightCity",sightCity);
+
+            var selectElement6 = document.getElementById("sightseeing");
+            var selectedOption6 = selectElement6.options[selectElement6.selectedIndex];
+            var sightseeing = selectedOption6.getAttribute("custom-data-item1");
+            console.log("customAttributeValuesightseeing",sightseeing);
+            // var sightCity = row.querySelector('#sightcity').value;
+            var sightseeing1 = row.querySelector('#sightseeing').value;
             var sightPersion = row.querySelector('#sightPersion').value;
-            // var sightCheckinDate = row.querySelector('#sightCheckinDate').value;
-            var totalPrice = sightseeing * sightPersion;
+            var sightCheckinDate = row.querySelector('#sightCheckinDate').value;
+            var rands = randomNumber;
+            var totalPrice = sightseeing1 * sightPersion;
             // Create an object with the extracted data
             var formData = {
                 sightCity: sightCity,
                 sightseeing: sightseeing,
                 sightPersion: sightPersion,
-                // sightCheckinDate: sightCheckinDate
+                totalPrice: totalPrice,
+                sightCheckinDate: sightCheckinDate,
+                rands:rands,
             };
 
             // Push the formData object to the sightseeingDataArray
@@ -336,69 +426,103 @@ if (($_SESSION["usersID"] == "")) {
         // Output the array for demonstration (you can modify this as per your requirement)
         console.log(sightseeingDataArray);
         console.log(totalData);
+        return sightseeingDataArray;
     }
 
 
     // Function to calculate data
     let formDataArray1 = [];
-    function calculateData1() {
-    // Clear the formDataArray before populating it again
-    // formDataArray1 = [];
-    var totalData = { totalPrice: 0 };
+    function calculateData1(randomNumber) {
+        // console.log("1random",randomNumber);
+        // Clear the formDataArray before populating it again
+        // let formDataArray1 = [];
+        var totalData = { totalPrice: 0 };
 
-    // Get all form rows
-    var formRows = document.querySelectorAll('.form-rows-container-1');
+        // Get all form rows
+        var formRows = document.querySelectorAll('.form-rows-container-1');
 
-    // Iterate over each form row
-        formRows.forEach(function(row) {
-            var city = row.querySelector('#transcity').value;
-            var transport = row.querySelector('#transport').value;
-            alert(transport);
-            var persion = row.querySelector('#transCategory').value;
-            alert(persion);
-            const temp = 1;
-            // var checkinDate = row.querySelector('.checkin-date').value;
-            var totalPrice = temp * persion;
-            // Create an object with the extracted data
-            var formData = {
-                city: city,
-                transport: transport,
-                persion: persion,
-                totalPrice: totalPrice,
-                // checkinDate: checkinDate
-            };
+        // Iterate over each form row
+            formRows.forEach(function(row) {
+                
+                var selectElement3 = document.getElementById("transcity");
+                var selectedOption3 = selectElement3.options[selectElement3.selectedIndex];
+                var city = selectedOption3.getAttribute("data-custom-category1");
+                console.log("customAttributeValuehotel",city);
 
-        // Push the formData object to the formDataArray
-        formDataArray1.push(formData);
-        totalData.totalPrice += totalPrice;
-        });
-        totalSum += totalData.totalPrice;
-        // Output the array for demonstration (you can modify this as per your requirement)
-        console.log("All data:", formDataArray1);
-        console.log("Total data:", totalData);
+                var selectElement4 = document.getElementById("transport");
+                var selectedOption4 = selectElement4.options[selectElement4.selectedIndex];
+                var transport = selectedOption4.getAttribute("data-custom-category2");
+                console.log("customAttributeValuehotel",transport);
+                // var city = row.querySelector('#transcity').value;
+                // var transport = row.querySelector('#transport').value;
+                // alert(transport);
+                var persion = row.querySelector('#transCategory').value;
+                var rand1 = randomNumber;
+                // alert(persion);
+                const temp = 1;
+                var transCheckinDate = row.querySelector('#transCheckinDate').value;
+                var totalPrice = temp * persion;
+                // Create an object with the extracted data
+                var formData = {
+                    city: city,
+                    transport: transport,
+                    persion: persion,
+                    totalPrice: totalPrice,
+                    transCheckinDate: transCheckinDate,
+                    rand1:rand1
+                };
+
+            // Push the formData object to the formDataArray
+            formDataArray1.push(formData);
+            totalData.totalPrice += totalPrice;
+            });
+            totalSum += totalData.totalPrice;
+            // Output the array for demonstration (you can modify this as per your requirement)
+            console.log("All data:", formDataArray1);
+            console.log("Total data:", totalData);
+            return formDataArray1;
+            // console.log("datada",formDataArray1);
     }
 
 
     // Function to calculate and store data in array format
     // var formDataArray=[];
     let formDataArray = [];
-    function calculateData() {
-        // var formDataArray = []; // Initialize an empty array to store form data
+    function calculateData(randomNumber) {
+        // let formDataArray = []; // Initialize an empty array to store form data
         var totalData = { totalPrice: 0 }; // Initialize total data object
-        
+        // console.log("tghfhkjh",randomNumber);
         // Get all form rows
         var formRows = document.querySelectorAll('.form-rows-container');
 
         // Iterate over each form row
         formRows.forEach(function(row) {
-            var city = row.querySelector('#city').value;
-            var hotel = row.querySelector('#hotel').value;
-            var category = row.querySelector('#category').value;
+            // Get the select element
+        var selectElement = document.getElementById("city");
+        var selectedOption = selectElement.options[selectElement.selectedIndex];
+        var city = selectedOption.getAttribute("data-custom-attribute");
+
+        console.log("customAttributeValue",city); 
+
+        var selectElement1 = document.getElementById("hotel");
+        var selectedOption1 = selectElement1.options[selectElement1.selectedIndex];
+        var hotel = selectedOption1.getAttribute("data-custom-attribute1");
+        console.log("customAttributeValuehotel",hotel);
+
+        var selectElement2 = document.getElementById("category");
+        var selectedOption2 = selectElement2.options[selectElement2.selectedIndex];
+        var category = selectedOption2.getAttribute("data-custom-category");
+        console.log("customAttributeValuehotel",category);
+            // var city = row.querySelector('#city').value;
+            // var hotel = row.querySelector('#hotel').value;
+            var category1 = row.querySelector('#category').value;
             var room = row.querySelector('#room').value;
             var night = row.querySelector('#night').value;
             var adult = row.querySelector('#adult').value;
+            var hotelCheckinDate = row.querySelector('#hotelCheckinDate').value;
+            var rand = randomNumber;
             // For example, calculate total price
-            var totalPrice = category * room * night; // Sample calculation
+            var totalPrice = category1 * room * night; // Sample calculation
             
             // Create an object with the extracted data
             var formData = {
@@ -408,8 +532,10 @@ if (($_SESSION["usersID"] == "")) {
                 room: room,
                 night: night,
                 adult: adult,
-                // checkinDate: checkinDate,
-                totalPrice: totalPrice
+                hotelCheckinDate: hotelCheckinDate,
+                totalPrice: totalPrice,
+                rand:rand
+
             };
 
             // Push the formData object to the formDataArray
@@ -430,6 +556,8 @@ if (($_SESSION["usersID"] == "")) {
 
     // Function to send data to PHP script
     function sendDataToPHP(formDataArray) {
+      
+        // console.log(formDataArray);
         var xhr = new XMLHttpRequest();
         var url = "store_data.php";
         xhr.open("POST", url, true);
@@ -442,43 +570,86 @@ if (($_SESSION["usersID"] == "")) {
         var data = JSON.stringify({formDataArray: formDataArray}); // Wrap formDataArray in an object
         xhr.send(data);
     }
+
+    function sendDataToPHP1(formDataArray1) {
+    
+        var xhr = new XMLHttpRequest();
+        var url = "store_data1.php";
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log(xhr.responseText); // Log the response from PHP
+            }
+        };
+        var data = JSON.stringify({formDataArray1: formDataArray1}); // Wrap formDataArray in an object
+        xhr.send(data);
+    }
+
+    function sendDataToPHP2(sightseeingDataArray) {
+    
+        var xhr = new XMLHttpRequest();
+        var url = "store_data2.php";
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log(xhr.responseText); // Log the response from PHP
+            }
+        };
+        var data = JSON.stringify({sightseeingDataArray: sightseeingDataArray}); // Wrap formDataArray in an object
+        xhr.send(data);
+    }
     
 
     // Event listener for the "Add" button click
     document.getElementById('fetchDataButton').addEventListener('click', function() {
+        if (validateForm()) {
+                alert("Form submitted successfully.");
+                this.style.display = 'none';
+                var name = document.getElementById('name').value;
+                var email = document.getElementById('email').value;
+                var phone = document.getElementById('phone').value;
+                var custdate = document.getElementById('custdate').value;
+                var pax = document.getElementById('pax').value;
 
-        this.style.display = 'none';
-        var name = document.getElementById('name').value;
-        var email = document.getElementById('email').value;
-        var phone = document.getElementById('phone').value;
-        // var date = document.getElementById('date').value;
-        var pax = document.getElementById('pax').value;
+                document.getElementById('dname').value = name;
+                
+                document.getElementById('demail').value = email;                    
+                document.getElementById('dphone').value = phone;
+                document.getElementById('custdate1').value = custdate;
+                document.getElementById('dpax').value = pax;
+                var randomNum = Math.floor(Math.random() * 1000000);
+                var randomNumber = "BCT" + randomNum;
+                document.getElementById('drand').value = randomNumber;
+                calculateData(randomNumber); // Call the function to calculate and store data
+                // console.log(formDataArray);
+                sendDataToPHP(formDataArray);
+                calculateData1(randomNumber);
+                console.log("wqertyiu",formDataArray);
+                sendDataToPHP1(formDataArray1);
+                
+                
+                calculateSightseeingData(randomNumber);
+                sendDataToPHP2(sightseeingDataArray);
+                console.log("wqertyiu",sightseeingDataArray);
+                // allTotalSum += totalSum;
+                var thb = totalSum/2.7;
+                var thbTotalFormatted = thb.toFixed(2);
+                var inrPer = Number(totalSum)/Number(pax);
+                document.getElementById('totalSumDisplay').value = totalSum;
+                document.getElementById('totalSumDisplay1').value = totalSum;
+                document.getElementById('totalthb').value = thbTotalFormatted;
+                document.getElementById('inrperpersion').value = inrPer;
+                document.getElementById('inrperpersion1').value = inrPer;
+            } else {
+                alert("Form submission failed due to validation errors.");
+            }
+   
+    
 
-        document.getElementById('dname').value = name;
-        document.getElementById('demail').value = email;                    
-        document.getElementById('dphone').value = phone;
-        // document.getElementById('ddate').value = date;
-        document.getElementById('dpax').value = pax;
-        calculateData(); // Call the function to calculate and store data
-        // console.log(formDataArray);
-        console.log("formDataArray",formDataArray);
-        sendDataToPHP(formDataArray);
-       
-        calculateData1(formDataArray1);
-        console.log("formDataArray1",formDataArray1);
-        calculateSightseeingData(sightseeingDataArray);
-        console.log("formDataArray2",sightseeingDataArray);
-        
-        // allTotalSum += totalSum;
-        var thb = totalSum/2.7;
-        var thbTotalFormatted = thb.toFixed(2);
-        var inrPer = Number(totalSum)/Number(pax);
-        document.getElementById('totalSumDisplay').value = totalSum;
-        document.getElementById('totalSumDisplay1').value = totalSum;
-        document.getElementById('totalthb').innerHtml = thbTotalFormatted;
-        document.getElementById('inrperpersion').value = inrPer;
-        
-      
+    // console.log(formDataArray);
+    // sendDataToPHP(formDataArray);
     });
 </script>
 
@@ -488,6 +659,7 @@ if (($_SESSION["usersID"] == "")) {
 
 
 <script>
+
     $(document).ready(function() {
         $("#addButton").click(function() {
             var clone = $("#formContainer").find(".form-rows-container").first().clone();

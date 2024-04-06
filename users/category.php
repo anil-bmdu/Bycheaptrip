@@ -18,7 +18,7 @@ if(isset($_POST['hotel_id'])) {
             // Loop through the results and create options
             while($row = mysqli_fetch_assoc($result)){
                 ?>
-                <option value="<?php echo $row['prices'] ?>"><?php echo $row['category_name'] . " - $" . $row['prices'] ?></option>
+                <option value="<?php echo $row['prices'] ?>" data-custom-category="<?php echo $row['category_name'] ?>"><?php echo $row['category_name'] ?><input type="text" id="<?php echo $row['hcategory_id'] ?>" /></option>
                 <?php 
             }
         } else {
